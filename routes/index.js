@@ -3,6 +3,19 @@ var router = require('express').Router();
 var Hotel = require('../models').Hotel;
 var Restaurant = require('../models').Restaurant;
 var Activity = require('../models').Activity;
+// var options = require('./api/options');
+
+
+router.get('/routes/api/options', function(req, res, next) {
+  Promise.all([
+    Hotel.findAll(),
+    Restaurant.findAll(),
+    Activity.findAll()
+  ])
+  .then(attractionsArray => {
+    res.json(attractionsArray);
+  });
+});
 
 router.get('/', function(req, res, next) {
   Promise.all([
@@ -19,5 +32,12 @@ router.get('/', function(req, res, next) {
   })
   .catch(next);
 });
+
+
+
+
+
+
+
 
 module.exports = router;
