@@ -2,7 +2,7 @@
 // The data can then be loaded with the node seed.js
 
 var Promise = require('bluebird');
-var db = require('./models');
+var db = require('./models').db;
 var Place = require('./models').Place;
 var Hotel = require('./models').Hotel;
 var Restaurant = require('./models').Restaurant;
@@ -62,7 +62,7 @@ var data = {
   ]
 };
 
-db.sync({force: true})
+db.sync(/*{force: true}*/)
 .then(function () {
   console.log("Dropped old data, now inserting data");
   return Promise.map(Object.keys(data), function (name) {

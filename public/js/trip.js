@@ -51,7 +51,10 @@ var tripModule = (function () {
   // ~~~~~~~~~~~~~~~~~~~~~~~
   function addDay () {
     if (this && this.blur) this.blur(); // removes focus box from buttons
-    var newDay = dayModule.create({ number: days.length + 1 }); // dayModule
+    var newDay = dayModule.create({ number: days.length + 1 }); // dayModule  // what we originally passed into .create(): { number: days.length + 1 }
+
+    // AJAX POST
+
     days.push(newDay);
     if (days.length === 1) {
       currentDay = newDay;
@@ -87,11 +90,12 @@ var tripModule = (function () {
         url: '/routes/api/days'
       })
       .then(daysArray => {
-        if(daysArray.length) => {
+        if(daysArray.length) {
           daysArray.forEach( day => {
-            $(addDay());
-          }
+            $(addDay(day));
+          });
         }
+        else $(addDay);
       })
       // ~~~~~~~~~~~~~~~~~~~~~~~
         //If we are trying to load existing Days, then let's make a request to the server for the day. Remember this is async. For each day we get back what do we need to do to it?
