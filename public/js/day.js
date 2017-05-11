@@ -72,7 +72,6 @@ var dayModule = (function () {
 
   Day.prototype.show = function () {
     // day UI
-    console.log('DAY!!!!', this)
     this.$button.addClass('current-day');
     $dayTitle.text('Day ' + this.number);
     // attractions UI
