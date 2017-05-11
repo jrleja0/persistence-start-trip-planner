@@ -4,9 +4,11 @@ var Hotel = require('../models').Hotel;
 var Restaurant = require('../models').Restaurant;
 var Activity = require('../models').Activity;
 var dbAttractions = require('./api/db-attractions');
+var days = require('./api/days');
 
+router.use('/routes/api/db-attractions', dbAttractions);
+router.use('/routes/api/days',days);
 
-router.use('/routes/api/', dbAttractions);
 
 router.get('/', (req, res, next) => {
   res.render('index');
